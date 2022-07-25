@@ -1,59 +1,30 @@
-## Introduction
+## Sense HAT colour sensor
 
-Add project description here. What will learners be making? Broadly what skills will they be learning?
+The version 2 Sense HAT includes an onboard colour sensor that can be used to measure the amount of light that is hitting the sensor, and detect the quantities of red, green and blue light.
 
-### What you will make
+The following code will output values for red, green and blue light that is detected, as well as the total amount of light that is incident of the sensor.
 
---- no-print ---
-Add instructions for interacting with the embedded content here.
-
-<div class="scratch-preview">
-  <iframe allowtransparency="true" width="485" height="402" src="https://scratch.mit.edu/projects/embed/160619869/?autostart=false" frameborder="0"></iframe>
-</div>
---- /no-print ---
-
---- print-only ---
-![Complete project](images/showcase_static.png)
---- /print-only ---
-
---- collapse ---
+--- code ---
 ---
-title: What you will need
+language: python
+filename: main.py
+line_numbers: true
+line_number_start: 
+highlight_lines: 
 ---
-### Hardware
+from sense_hat import SenseHat
+from time import sleep
 
-+ A computer or tablet capable of running Scratch 3
+sense = SenseHat()
+sense.color.gain = 60
+sense.color.integration_cycles = 64
 
-### Software
+while True:
+    sleep(2 * sense.colour.integration_time)
+    red, green, blue, clear = sense.colour.colour # readings scaled to 0-256
+    print(f"R: {red}, G: {green}, B: {blue}, C: {clear}")
+--- /code ---
 
-+ Scratch 3 (either [online](https://scratch.mit.edu/){:target="_blank"} or [offline](https://scratch.mit.edu/download){:target="_blank"})
-+ Python 3
-+ This project can be completed in a web browser using [trinket.io](https://trinket.io/)
+**Gain** is simply the sensitivity of the sensor. It can have values of `1`, `4`, `16` or `60.
 
-### Downloads
-
-+ Download the project [starter file](https://rpf.io/p/en/projectName-go){:target="_blank"} if working offline
-
---- /collapse ---
-
---- collapse ---
----
-title: What you will learn
----
-
-+ Learning objective 1
-+ Learning objective 2
-+ Learning objective 3
-
---- /collapse ---
-
---- collapse ---
----
-title: Additional information for educators
----
-
-You can download the completed project [here](https://rpf.io/p/en/projectName-get){:target="_blank"}.
-
-If you need to print this project, please use the [printer-friendly version](https://projects.raspberrypi.org/en/projects/projectName/print){:target="_blank"}.
-
---- /collapse ---
+**Integration cycles** reflects the time that the the sensor takes between measuring the light. Each integration cycle is 2.4 milliseconds long, and the number of integration cycles can be any number between `1` and `256`.
