@@ -25,6 +25,6 @@ while True:
     print(f"R: {red}, G: {green}, B: {blue}, C: {clear}")
 --- /code ---
 
-**Gain** is simply the sensitivity of the sensor. It can have values of `1`, `4`, `16` or `60.
+**Gain** is simply the sensitivity of the sensor. It can have values of `1`, `4`, `16` or `60`.
 
-**Integration cycles** reflects the time that the the sensor takes between measuring the light. Each integration cycle is 2.4 milliseconds long, and the number of integration cycles can be any number between `1` and `256`.
+**Integration cycles** are the time that the the sensor takes between measuring the light. Each integration cycle is 2.4 milliseconds long, and the number of integration cycles can be any number between `1` and `256`.
